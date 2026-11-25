@@ -50,7 +50,7 @@ LastRunTime 应为刚才关机的时间，LastTaskResult 应为 0。
 
 ## 原理与注意
 
-- 接口：POST https://webapi.leigod.com/api/user/pause（备用 webapi.nn.com），
+- 接口：POST https://webapi.leigod.com/api/user/pause      （备用 webapi.nn.com），
   body {"account_token":"<token>"}；code 0 成功、400803 已暂停（视为成功）、400007 登录态过期。
 - token 来源：客户端 HTTP 日志里的 account_token=...（自动取最新）。日志目录自动定位：
   leigod-pause.ini 的 log_dir → 运行中的 leigod.exe → 注册表卸载项 → Preferences →
@@ -58,5 +58,5 @@ LastRunTime 应为刚才关机的时间，LastTaskResult 应为 0。
 - 假暂停：PC 端恢复加速不会清除云端暂停标记，所以每次关机都无条件调 pause，
   已暂停返回 400803，幂等无害。
 - token 有效期约 7 天；过期后重新登录雷神客户端，脚本自动读到新 token。
-- 本机是 Windows 家庭中文版，没有 gpedit.msc，计划任务是等价做法。
 
+※不保证程序能正常暂停计时，在不使用加速器时还请手动关闭计时
